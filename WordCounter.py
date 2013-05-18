@@ -46,8 +46,8 @@ for line in fileData:
 	
 # Print out results of the word counter
 for key, value in wordDictionary.iteritems():
-	print "\n---------------------------\n"
-	print "Word:(", key, ") \nNumber of appearaces:", value.wordCount
+	print "\n-----------------------------------------------\n"
+	print "Word:(", key, ") \nNumber of appearaces:", value.wordCount, "\nLine(s) which word appears:",value.linesWhichAppears
 
-
+print "\n-----------------------------------------------\n"
 
