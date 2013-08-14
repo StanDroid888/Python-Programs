@@ -9,7 +9,4 @@ from PalindromeCheckerClass import PalindromeChecker
 
 myChecker = PalindromeChecker()
 
-print myChecker.checkWord("wow")
-
-
-
+print myChecker.checkString("wow o wow")

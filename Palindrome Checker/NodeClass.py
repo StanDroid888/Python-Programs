@@ -8,7 +8,7 @@
 ##############################################
 class Node(object):
      
+    # Initialize/Constructor
     def __init__(self, data):
         self.data = data
         self.next = None
-        

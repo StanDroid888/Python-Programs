@@ -1,18 +1,26 @@
-'''
-Created on Aug 14, 2013
-
-@author: Stanley Wong
-'''
+##############################################
+#
+# Programmer: Stanley Wong
+# File: StackDriver.py
+# Description: This program checks if a 
+# string is a Palindrome. This module 
+# requires StackClass.py.
+#          
+##############################################
 from StackClass import Stack
 
 class PalindromeChecker:
     
+	# Initializtion/Constructor
         def __init__(self):
             self.stringToCheck = None
             self.stringStack = Stack()
             self.isPalindrome = False
             
-        def checkWord(self, string):
+	# This method checks if a string (argument)
+	# is a palindrome. The method returns a 
+	# boolean.
+        def checkString(self, string):
             self.stringToCheck = string
             print "Checking string %s" % self.stringToCheck
 
@@ -27,5 +35,6 @@ class PalindromeChecker:
             for eachChar in self.stringToCheck:
                 if eachChar != self.stringStack.pop():
                     booleanValue = False
-
+		
+	    # return boolean
             return booleanValue
