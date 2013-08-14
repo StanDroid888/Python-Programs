@@ -7,6 +7,7 @@
 # requires StackClass.py.
 #          
 ##############################################
+import re
 from StackClass import Stack
 
 class PalindromeChecker:
@@ -21,11 +22,18 @@ class PalindromeChecker:
 	# is a palindrome. The method returns a 
 	# boolean.
         def checkString(self, string):
-            self.stringToCheck = string
-            print "Checking string %s" % self.stringToCheck
-
-            # Initialize return value to be True
+	
+	    # Initialize return value to be True
             booleanValue = True
+
+	    # Show string to be evaluated
+            print "Checking string %s" % string
+	    
+            # Remove punctuations 
+	    string = re.sub('[!@#$.?,]', '', string)	  
+
+	    # Set the attribute
+	    self.stringToCheck = string.lower()
 
             # Fill the stack            
             for eachChar in self.stringToCheck:
