@@ -1,8 +1,11 @@
-'''
-Created on Aug 13, 2013
-
-@author: Stanley Wong
-'''
+##############################################
+#
+# Programmer: Stanley Wong
+# File: StackClass.py
+# Description: Python Dynamic Stack module. 
+#              Requires NodeClass.py
+#
+##############################################
 from NodeClass import Node
 
 class Stack:

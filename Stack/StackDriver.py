@@ -1,8 +1,10 @@
-'''
-Created on Aug 13, 2013
-
-@author: Stanley Wong
-'''
+##############################################
+#
+# Programmer: Stanley Wong
+# File: StackDriver.py
+# Description: Python Stack Driver
+#
+##############################################
 from StackClass import Stack
 
 myStack = Stack()
