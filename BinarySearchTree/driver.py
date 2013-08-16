@@ -4,7 +4,7 @@ Created on Aug 15, 2013
 @author: Stanley Wong
 '''
 from treeNode import Node
-from bst import BinarySearchTree
+from tree import BinarySearchTree
 
 node3 = Node(3)
 
@@ -18,3 +18,5 @@ myTree.add(myTree.root, 44)
 myTree.add(myTree.root, 88)
 
 myTree.printInOrder(myTree.root)
+
+print myTree.find(33)
