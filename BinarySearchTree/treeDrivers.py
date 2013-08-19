@@ -20,3 +20,12 @@ myTree.add(myTree.root, 88)
 myTree.printInOrder(myTree.root)
 
 print myTree.find(33)
+print myTree.minNode(myTree.root)
+#myTree.deleteNode(44)
+myTree.deleteNode(22)
+
+myTree.printInOrder(myTree.root)
+
+
+
+print "program ended"
