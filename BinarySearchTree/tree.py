@@ -1,38 +1,39 @@
 '''
-Created on Aug 16, 2013
+Programmer: Stanley Wong
+Module: BinarySearchTree
+Description: Binary Search Tree Module
 
-@author: Stanley Wong
 '''
 from treeNode import Node
 
 class BinarySearchTree(object):
 
-    # Initalization/Constructor
+    # Constructor
     def __init__(self):
         self.root = None
     
     # Inserts a Node on to the BST
-    def add(self, currentNode, data):
+    def add(self, currentNode, dataValue):
         # Check to see if tree is Empty
         if currentNode == None:
-            self.root = Node(data)
-            print "Added Root Node %s" % str(data)
+            self.root = Node(dataValue)
+            print "Added Root Node %s" % str(dataValue)
         # Add a node onto the tree
         else:
-            if data > currentNode.data:
+            if dataValue > currentNode.data:
                 if currentNode.right == None:
-                    currentNode.right = Node(data)
-                    print "Added Node %s" % str(data)
+                    currentNode.right = Node(dataValue)
+                    print "Added Node %s" % str(dataValue)
                 else:
-                    self.add(currentNode.right,data)
-            elif data < currentNode.data:
+                    self.add(currentNode.right, dataValue)
+            elif dataValue < currentNode.data:
                 if currentNode.left == None:
-                    currentNode.left = Node(data)
-                    print "Added Node %s" % str(data)
+                    currentNode.left = Node(dataValue)
+                    print "Added Node %s" % str(dataValue)
                 else:
-                    self.add(currentNode.left,data)
+                    self.add(currentNode.left, dataValue)
                     
-    # Output the tree in order
+    # Output the tree IN order
     def printInOrder(self, currentNode):
         if currentNode == None:
             return
@@ -41,20 +42,38 @@ class BinarySearchTree(object):
             print currentNode
             self.printInOrder(currentNode.right)
             
+    # Output the tree PRE order
+    def printPreOrder(self, currentNode):
+        if currentNode == None:
+            return
+        else:
+            print currentNode
+            self.printInOrder(currentNode.left)
+            self.printInOrder(currentNode.right)
+            
+    # Output the tree POST order
+    def printPostOrder(self, currentNode):
+        if currentNode == None:
+            return
+        else:
+            self.printInOrder(currentNode.left)
+            self.printInOrder(currentNode.right)
+            print currentNode
+            
     # Returns a boolean base on if an element is
-    # in the BST
-    def find(self, dataToFind):
+    # in the Binary Search Tree
+    def find(self, dataToFindValue):
         
         foundData = False
         currentNode = self.root
         
         while foundData == False:
-            if currentNode.data == dataToFind:
+            if currentNode.data == dataToFindValue:
                 foundData = True
                 break
-            elif dataToFind > currentNode.data:
+            elif dataToFindValue > currentNode.data:
                 currentNode = currentNode.right
-            elif dataToFind < currentNode.data:
+            elif dataToFindValue < currentNode.data:
                 currentNode = currentNode.left
             elif currentNode == None:
                 foundData = False
@@ -63,7 +82,7 @@ class BinarySearchTree(object):
         # Return boolean     
         return foundData
     
-    # Return the minium value in the tree
+    # Return the minimum value in the tree
     # starting at Node which was passed in
     # as the parameter.  
     def findMin(self, currentNode):
@@ -73,44 +92,47 @@ class BinarySearchTree(object):
             
         return currentNode.data
     
-    def findParent(self, keyValue):
+    
+    # Returns the parent of the Node with 
+    # the specified data value.
+    def findParent(self, childDataValue):
         
         foundChild = False
         currentNode = self.root
         
         while foundChild == False:
-            if currentNode.left.data == keyValue or currentNode.right.data == keyValue:
-                foundData = True
+            if currentNode.left.data == childDataValue or currentNode.right.data == childDataValue:
+                foundChild = True
                 break
-            elif keyValue > currentNode.data:
+            elif childDataValue > currentNode.data:
                 currentNode = currentNode.right
-            elif keyValue < currentNode.data:
+            elif childDataValue < currentNode.data:
                 currentNode = currentNode.left
             elif currentNode == None:
-                foundData = False
+                print "error"
                 break
         
         # Return boolean     
         return currentNode
         
-        
-    
-    # Delete a node from Tree
-    def deleteNode(self,valueToDelete):
+    # Delete the Node from the Binary Search Tree
+    # which has the specified value specified as an
+    # argument. 
+    def deleteNode(self, deleteValue):
         
         previousNode = currentNode = self.root
         
         # Check if value is actually in 
         # the binary search tree.
-        if (self.find(valueToDelete)):
+        if (self.find(deleteValue)):
             
             # Find where the Node to be deleted is
             # located. 
-            while currentNode.data != valueToDelete:
-                if valueToDelete > currentNode.data:
+            while currentNode.data != deleteValue:
+                if deleteValue > currentNode.data:
                     previousNode = currentNode
                     currentNode = currentNode.right
-                elif valueToDelete < currentNode.data:
+                elif deleteValue < currentNode.data:
                     previousNode = currentNode
                     currentNode = currentNode.left
                 else:
@@ -121,11 +143,19 @@ class BinarySearchTree(object):
         print "Deleting...%s" % currentNode
         
         if currentNode.left == None and currentNode.right == None:
+            # Delete Node which has no children by setting the 
+            # left or right child to None.
             if previousNode.left > currentNode.data:
                 previousNode.left = None
             else:
                 previousNode.right = None
         else:
+            # Delete Node which has one or two children. 
+            # This will be done by finding the Node that 
+            # contains the minimum value of a subtree, 
+            # where the Node to be deleted is the root, 
+            # and then swapping the data and removing 
+            # the originally minimum Node. 
             if previousNode.left > currentNode.data:
                 parentNode = self.findParent(self.findMin(currentNode))
                 currentNode.data = self.findMin(currentNode)
