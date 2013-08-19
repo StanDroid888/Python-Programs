@@ -143,24 +143,27 @@ class BinarySearchTree(object):
         print "Deleting...%s" % currentNode
         
         if currentNode.left == None and currentNode.right == None:
-            # Delete Node which has no children by setting the 
-            # left or right child to None.
-            if previousNode.left > currentNode.data:
+            
+            # Delete Node with no children
+            if previousNode.data > currentNode.data:
                 previousNode.left = None
             else:
-                previousNode.right = None
+                previousNode.right = None  
+                
         else:
+            
             # Delete Node which has one or two children. 
             # This will be done by finding the Node that 
             # contains the minimum value of a subtree, 
             # where the Node to be deleted is the root, 
             # and then swapping the data and removing 
             # the originally minimum Node. 
-            if previousNode.left > currentNode.data:
-                parentNode = self.findParent(self.findMin(currentNode))
-                currentNode.data = self.findMin(currentNode)
-                parentNode.left = None
+            
+            tempValue = self.findMin(currentNode)
+            
+            if previousNode.data > currentNode.data:
+                currentNode.data = tempValue
+                previousNode.left = None
             else:
-                parentNode = self.findParent(self.findMin(currentNode))
-                currentNode.data = self.findMin(currentNode)
-                parentNode.right = None
+                currentNode.data = tempValue
+                previousNode.right = None
