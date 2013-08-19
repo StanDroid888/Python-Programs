@@ -19,10 +19,14 @@ myTree.add(myTree.root, 88)
 
 myTree.printInOrder(myTree.root)
 
-print myTree.find(33)
-print myTree.minNode(myTree.root)
-#myTree.deleteNode(44)
-myTree.deleteNode(22)
+#print myTree.find(33)
+#print myTree.findMin(myTree.root)
+myTree.deleteNode(44)
+myTree.deleteNode(55)
+
+# parentNode = myTree.findParent(33)
+# print "Parent: %d Child: 33" % parentNode.data
+
 
 myTree.printInOrder(myTree.root)
 

@@ -66,12 +66,34 @@ class BinarySearchTree(object):
     # Return the minium value in the tree
     # starting at Node which was passed in
     # as the parameter.  
-    def minNode(self, currentNode):
+    def findMin(self, currentNode):
         
         while(currentNode.left != None): 
             currentNode = currentNode.left
             
         return currentNode.data
+    
+    def findParent(self, keyValue):
+        
+        foundChild = False
+        currentNode = self.root
+        
+        while foundChild == False:
+            if currentNode.left.data == keyValue or currentNode.right.data == keyValue:
+                foundData = True
+                break
+            elif keyValue > currentNode.data:
+                currentNode = currentNode.right
+            elif keyValue < currentNode.data:
+                currentNode = currentNode.left
+            elif currentNode == None:
+                foundData = False
+                break
+        
+        # Return boolean     
+        return currentNode
+        
+        
     
     # Delete a node from Tree
     def deleteNode(self,valueToDelete):
@@ -82,6 +104,8 @@ class BinarySearchTree(object):
         # the binary search tree.
         if (self.find(valueToDelete)):
             
+            # Find where the Node to be deleted is
+            # located. 
             while currentNode.data != valueToDelete:
                 if valueToDelete > currentNode.data:
                     previousNode = currentNode
@@ -91,7 +115,9 @@ class BinarySearchTree(object):
                     currentNode = currentNode.left
                 else:
                     print "Error!!"
-                    
+        
+        # Now that the right spot has been found,
+        # process the Node deletion.             
         print "Deleting...%s" % currentNode
         
         if currentNode.left == None and currentNode.right == None:
@@ -100,4 +126,11 @@ class BinarySearchTree(object):
             else:
                 previousNode.right = None
         else:
-            currentNode.data = self.minNode(currentNode)
+            if previousNode.left > currentNode.data:
+                parentNode = self.findParent(self.findMin(currentNode))
+                currentNode.data = self.findMin(currentNode)
+                parentNode.left = None
+            else:
+                parentNode = self.findParent(self.findMin(currentNode))
+                currentNode.data = self.findMin(currentNode)
+                parentNode.right = None
