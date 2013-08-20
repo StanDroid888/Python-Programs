@@ -150,15 +150,19 @@ class BinarySearchTree(object):
             else:
                 previousNode.right = None  
                 
+        elif currentNode.left != None and currentNode.right == None:
+            
+            # Delete Node with only one child on the Left
+            previousNode.left = currentNode.left
+
+        elif currentNode.left == None and currentNode.right != None:
+            
+            # Delete Node with only one child on the Right
+            previousNode.right = currentNode.right
+            
         else:
             
-            # Delete Node which has one or two children. 
-            # This will be done by finding the Node that 
-            # contains the minimum value of a subtree, 
-            # where the Node to be deleted is the root, 
-            # and then swapping the data and removing 
-            # the originally minimum Node. 
-            
+            # Delete Node that has two children. 
             if previousNode.data > currentNode.data:
                 currentNode.data = self.findMin(currentNode.right)
                 self.findParent(currentNode.data).right = None
