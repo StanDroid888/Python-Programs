@@ -39,7 +39,7 @@ class BinarySearchTree(object):
             return
         else:
             self.printInOrder(currentNode.left)
-            print currentNode
+            print currentNode.data,
             self.printInOrder(currentNode.right)
             
     # Output the tree PRE order
@@ -47,7 +47,7 @@ class BinarySearchTree(object):
         if currentNode == None:
             return
         else:
-            print currentNode
+            print currentNode.data,
             self.printInOrder(currentNode.left)
             self.printInOrder(currentNode.right)
             
@@ -58,7 +58,7 @@ class BinarySearchTree(object):
         else:
             self.printInOrder(currentNode.left)
             self.printInOrder(currentNode.right)
-            print currentNode
+            print currentNode.data,
             
     # Returns a boolean base on if an element is
     # in the Binary Search Tree
@@ -121,13 +121,6 @@ class BinarySearchTree(object):
     def deleteNode(self, deleteValue):
         
         previousNode = currentNode = self.root
-        
-        # Request to Delete Node
-        if self.root.data == deleteValue:
-            
-            ### TO DO: Fix deletion of Root
-            print "Can't delete Root right now!!"
-            return
             
         # Check if value is actually in 
         # the binary search tree.
@@ -150,29 +143,19 @@ class BinarySearchTree(object):
         print "Deleting...%s" % currentNode
      
         if currentNode.left == None and currentNode.right == None:
-            
             # Delete Node with no children
-            if previousNode.data > currentNode.data:
-                previousNode.left = None
-            else:
-                previousNode.right = None  
-                
+            currentNode = None
+            
+        elif currentNode.left != None and currentNode.right != None:
+            # Delete Node with Two children
+            currentNode.data = self.findMin(currentNode.right)
+            
         elif currentNode.left != None and currentNode.right == None:
-            
-            # Delete Node with only one child on the Left
+            # Delete Node with Left child
             previousNode.left = currentNode.left
-
+            currentNode = None
+            
         elif currentNode.left == None and currentNode.right != None:
-            
-            # Delete Node with only one child on the Right
+            # Delete Node with Right child
             previousNode.right = currentNode.right
-            
-        else:
-            
-            # Delete Node that has two children. 
-            if previousNode.data > currentNode.data:
-                currentNode.data = self.findMin(currentNode.right)
-                self.findParent(currentNode.data).right = None
-            else:
-                currentNode.data = self.findMin(currentNode.right)
-                self.findParent(currentNode.data).left = None
+            currentNode = None
