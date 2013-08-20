@@ -160,10 +160,11 @@ class BinarySearchTree(object):
             # the originally minimum Node. 
             
             tempValue = self.findMin(currentNode)
+            tempNode = self.findParent(tempValue)
             
             if previousNode.data > currentNode.data:
                 currentNode.data = tempValue
-                previousNode.left = None
+                tempNode.right = None
             else:
                 currentNode.data = tempValue
-                previousNode.right = None
+                tempNode.left = None

@@ -16,11 +16,16 @@ myTree.add(myTree.root, 33)
 myTree.add(myTree.root,11)
 myTree.add(myTree.root, 44)
 myTree.add(myTree.root, 88)
+myTree.add(myTree.root, 66)
+myTree.add(myTree.root, 99)
+myTree.add(myTree.root, 77)
+myTree.add(myTree.root, 100)
 
 myTree.printInOrder(myTree.root)
 
 myTree.deleteNode(44)
-myTree.deleteNode(55)
+myTree.deleteNode(33)
+myTree.deleteNode(11)
 
 myTree.printInOrder(myTree.root)
 
