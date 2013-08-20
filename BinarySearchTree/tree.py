@@ -11,9 +11,45 @@ class BinarySearchTree(object):
     # Constructor
     def __init__(self):
         self.root = None
+
+    # Inserts a Node on to the BST
+    # Iterative version
+    def addNode(self, dataValue):
+        
+        currentNode = self.root
+        locationFound = False
+        
+        # Check to see if Node is already on the Tree
+        if self.find(dataValue) == True:
+            print "CAN'T ADD DUPLICATE NODE ONTO TREE"
+            return
+        
+        # Check to see if tree is Empty
+        if currentNode == None:
+            self.root = Node(dataValue)
+            print "Added Root Node %s" % str(dataValue)
+            locationFound = True
+        else:
+            while locationFound == False:
+                if dataValue > currentNode.data:
+                    if currentNode.right == None:
+                        currentNode.right = Node(dataValue)
+                        print "Added Node %s" % str(dataValue)
+                        locationFound = True
+                    else:
+                        currentNode = currentNode.right
+                elif dataValue < currentNode.data:
+                    if currentNode.left == None:
+                        currentNode.left = Node(dataValue)
+                        print "Added Node %s" % str(dataValue)
+                        locationFound = True
+                    else:
+                        currentNode = currentNode.left
     
     # Inserts a Node on to the BST
-    def add(self, currentNode, dataValue):
+    # Recursive Version
+    def addRecusively(self, currentNode, dataValue):
+        
         # Check to see if tree is Empty
         if currentNode == None:
             self.root = Node(dataValue)
@@ -65,23 +101,26 @@ class BinarySearchTree(object):
     def find(self, dataToFindValue):
         
         foundData = False
-        currentNode = self.root
         
-        while foundData == False:
-            if currentNode.data == dataToFindValue:
-                foundData = True
-                break
-            elif dataToFindValue > currentNode.data:
-                currentNode = currentNode.right
-            elif dataToFindValue < currentNode.data:
-                currentNode = currentNode.left
-            elif currentNode == None:
-                foundData = False
-                break
+        # If tree is empty, just return False
+        if self.root != None:
+            currentNode = self.root
+        else:
+            return False
         
-        # Return boolean     
-        return foundData
-    
+        # Binary Tree is empty, 
+        # so return False
+        if self.root != None:
+            while foundData == False:
+                if currentNode == None:
+                    return False
+                elif currentNode.data == dataToFindValue:
+                    return True 
+                elif dataToFindValue > currentNode.data:
+                    currentNode = currentNode.right
+                elif dataToFindValue < currentNode.data:
+                    currentNode = currentNode.left
+
     # Return the minimum value in the tree
     # starting at Node which was passed in
     # as the parameter.  
@@ -144,12 +183,15 @@ class BinarySearchTree(object):
      
         if currentNode.left == None and currentNode.right == None:
             # Delete Node with no children
-            currentNode = None
+            if previousNode.data < currentNode.data:
+                previousNode.right = None
+            else:
+                previousNode.left = None
             
         elif currentNode.left != None and currentNode.right != None:
             # Delete Node with Two children
             currentNode.data = self.findMin(currentNode.right)
-            
+              
         elif currentNode.left != None and currentNode.right == None:
             # Delete Node with Left child
             previousNode.left = currentNode.left
