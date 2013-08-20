@@ -141,7 +141,7 @@ class BinarySearchTree(object):
         # Now that the right spot has been found,
         # process the Node deletion.             
         print "Deleting...%s" % currentNode
-        
+     
         if currentNode.left == None and currentNode.right == None:
             
             # Delete Node with no children
@@ -159,12 +159,9 @@ class BinarySearchTree(object):
             # and then swapping the data and removing 
             # the originally minimum Node. 
             
-            tempValue = self.findMin(currentNode)
-            tempNode = self.findParent(tempValue)
-            
             if previousNode.data > currentNode.data:
-                currentNode.data = tempValue
-                tempNode.right = None
+                currentNode.data = self.findMin(currentNode.right)
+                self.findParent(currentNode.data).right = None
             else:
-                currentNode.data = tempValue
-                tempNode.left = None
+                currentNode.data = self.findMin(currentNode.right)
+                self.findParent(currentNode.data).left = None
