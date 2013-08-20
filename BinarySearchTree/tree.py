@@ -122,6 +122,13 @@ class BinarySearchTree(object):
         
         previousNode = currentNode = self.root
         
+        # Request to Delete Node
+        if self.root.data == deleteValue:
+            
+            ### TO DO: Fix deletion of Root
+            print "Can't delete Root right now!!"
+            return
+            
         # Check if value is actually in 
         # the binary search tree.
         if (self.find(deleteValue)):

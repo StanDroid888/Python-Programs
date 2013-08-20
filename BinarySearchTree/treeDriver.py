@@ -26,6 +26,7 @@ myTree.printInOrder(myTree.root)
 myTree.deleteNode(44)
 myTree.deleteNode(33)
 myTree.deleteNode(11)
+myTree.deleteNode(55)
 myTree.deleteNode(77)
 
 myTree.printInOrder(myTree.root)
