@@ -166,6 +166,14 @@ class BinarySearchTree(object):
         
         # Initialize Pointer/References
         previousNode = currentNode = self.root
+        
+        # Check for special case where
+        # there is only the one Node on
+        # the Binary Search Tree. 
+        if self.count == 1:
+            self.root = None
+            self.count -= 1
+            return
             
         # Check if value is actually in 
         # the binary search tree.
@@ -183,8 +191,8 @@ class BinarySearchTree(object):
                     print "Error!!"
         else:
             # The Node was not found on the Binary Search Tree
-            print "ERROR: Request to Delete Node which is"
-            print "is NOT on the Binary Search Tree"
+            print "ERROR: Attempt to DELETE a Node not on the Tree"
+            return
         
         # Now that the right spot has been found,
         # process the Node deletion.             

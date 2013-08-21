@@ -17,7 +17,7 @@ myTree.addNode(1)
 myTree.addNode(2)
 myTree.addNode(8)
 myTree.addNode(9)
-
+ 
 myTree.addNode(13)
 myTree.addNode(12)
 myTree.addNode(16)
