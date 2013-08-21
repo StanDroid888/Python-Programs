@@ -159,12 +159,12 @@ class BinarySearchTree(object):
     # argument. 
     def deleteNode(self, deleteValue):
         
+        # Initialize Pointer/References
         previousNode = currentNode = self.root
             
         # Check if value is actually in 
         # the binary search tree.
         if (self.find(deleteValue)):
-            
             # Find where the Node to be deleted is
             # located. 
             while currentNode.data != deleteValue:
@@ -176,6 +176,10 @@ class BinarySearchTree(object):
                     currentNode = currentNode.left
                 else:
                     print "Error!!"
+        else:
+            # The Node was not found on the Binary Search Tree
+            print "ERROR: Request to Delete Node which is"
+            print "is NOT on the Binary Search Tree"
         
         # Now that the right spot has been found,
         # process the Node deletion.             
