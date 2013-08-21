@@ -20,16 +20,21 @@ myTree.addNode(9)
 myTree.addNode(13)
 myTree.addNode(10)
 myTree.addNode(14)
+myTree.addNode(8.5)
  
 myTree.printInOrder(myTree.root)
 
 print ""
 
-myTree.deleteNode(1)
-myTree.deleteNode(14)
-myTree.deleteNode(10)
-myTree.deleteNode(3)
 myTree.deleteNode(9)
+
+#===============================================================================
+# myTree.deleteNode(1)
+# myTree.deleteNode(14)
+# myTree.deleteNode(10)
+# myTree.deleteNode(3)
+# myTree.deleteNode(9)
+#===============================================================================
 
 
 myTree.printInOrder(myTree.root)
