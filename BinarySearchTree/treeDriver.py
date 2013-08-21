@@ -30,6 +30,8 @@ myTree.addNode(19)
 print "\nOriginal List"
 
 myTree.printInOrder(myTree.root)
+print "\ncount: %d" % myTree.count
+
 
 print ""
 
@@ -39,8 +41,10 @@ myTree.deleteNode(1)
 myTree.deleteNode(2)
 myTree.deleteNode(7)
 myTree.deleteNode(20)
+myTree.deleteNode(10)
 
 myTree.printInOrder(myTree.root)
+print "\ncount: %d" % myTree.count
 
 print ""
 print "program ended"

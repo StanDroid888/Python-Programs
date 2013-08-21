@@ -11,6 +11,7 @@ class BinarySearchTree(object):
     # Constructor
     def __init__(self):
         self.root = None
+        self.count = 0
 
     # Inserts a Node on to the BST
     # Iterative version
@@ -45,7 +46,10 @@ class BinarySearchTree(object):
                         locationFound = True
                     else:
                         currentNode = currentNode.left
-    
+        
+        # Increment Counter            
+        self.count += 1
+                        
     # Inserts a Node on to the BST
     # Recursive Version
     def addRecusively(self, currentNode, dataValue):
@@ -139,6 +143,7 @@ class BinarySearchTree(object):
         foundChild = False
         currentNode = self.root
         
+        # Search for particular data value
         while foundChild == False:
             if currentNode.left.data == childDataValue or currentNode.right.data == childDataValue:
                 foundChild = True
@@ -199,39 +204,66 @@ class BinarySearchTree(object):
             
             currentNode.data = self.findMin(currentNode.right)
             
-            # reset Node pointer/reference
+            # Traverse to Node which will
+            # be removed from the Binary Search Tree
+
+            # Check if there is a need to traverse
+            # to the Node to remove obsolete Node
             if currentNode.right.left != None:
                 
+                # Reset pointers/references
+                # to sub-root will be the right Node of 
+                # the value being deleted. 
                 currentNode = previousNode = currentNode.right
                 
+                # Search until obsolete Node is reached
                 while currentNode.left != None:
                     previousNode = currentNode
                     currentNode = currentNode.left
+                    
+                    # Obsolete Node found. Check to see 
+                    # If obsolete Node has a right child,
+                    # swap values of the right Node with the 
+                    # obsolete Node. Afterwards, delete the 
+                    # right Node.
                     if currentNode.right != None:
-                            if previousNode.data < currentNode.data:
-                                previousNode.right = currentNode.right
-                                currentNode.right = None
-                            else:
-                                previousNode.left = currentNode.right
-                                currentNode.right = None
+                        
+                        # Check if the obsolete Node is a right 
+                        # or left child. Then process deletion 
+                        # accordingly. 
+                        if previousNode.data < currentNode.data:
+                            previousNode.right = currentNode.right
+                            currentNode.right = None
+                        else:
+                            # Check if the obsolete Node is a right 
+                            # or left child. Then process deletion 
+                            # accordingly.
+                            previousNode.left = currentNode.right
+                            currentNode.right = None
+                    # Obsolete Node has no right child, just delete.
                     else:
                         if previousNode.data <= currentNode.data:
                             previousNode.right = None
                         else:
                             previousNode.left = None
+            # Already at obsolete Node location, 
+            # just delete it.                 
             else:
                 currentNode.right = None
-                                
+                
+        # Deletion of Node with only a LEFT child                
         elif currentNode.left != None and currentNode.right == None:
-            # Delete Node with Left child
             if currentNode.data < previousNode.data:
                 previousNode.left = currentNode.left
             else:
                 previousNode.right = currentNode.left
-            
+        
+        # Deletion of Node with only a RIGHT child 
         elif currentNode.left == None and currentNode.right != None:
-            # Delete Node with Right child
             if currentNode.data < previousNode.data:
                 previousNode.left = currentNode.right
             else:
                 previousNode.right = currentNode.right
+                
+        # Decrement Counter 
+        self.count -= 1
