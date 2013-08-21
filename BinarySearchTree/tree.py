@@ -189,15 +189,35 @@ class BinarySearchTree(object):
                 previousNode.left = None
             
         elif currentNode.left != None and currentNode.right != None:
+            
             # Delete Node with Two children
+            # Need to fix
             currentNode.data = self.findMin(currentNode.right)
-              
+            
+            currentNode = currentNode.right
+            
+            while currentNode.left != None:
+                previousNode = currentNode
+                currentNode = currentNode.left
+            
+            if currentNode.right != None:
+                if previousNode.data < currentNode.data:
+                    previousNode.right = currentNode.right
+                else:
+                    previousNode.left = currentNode.right
+            else:
+                previousNode.left = None
+                                
         elif currentNode.left != None and currentNode.right == None:
             # Delete Node with Left child
-            previousNode.left = currentNode.left
-            currentNode = None
+            if currentNode.data < previousNode.data:
+                previousNode.left = currentNode.left
+            else:
+                previousNode.right = currentNode.left
             
         elif currentNode.left == None and currentNode.right != None:
             # Delete Node with Right child
-            previousNode.right = currentNode.right
-            currentNode = None
+            if currentNode.data < previousNode.data:
+                previousNode.left = currentNode.right
+            else:
+                previousNode.right = currentNode.right
