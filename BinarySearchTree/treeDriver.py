@@ -37,8 +37,8 @@ myTree.deleteNode(16)
 myTree.deleteNode(9)
 myTree.deleteNode(1)
 myTree.deleteNode(2)
-
-
+myTree.deleteNode(7)
+myTree.deleteNode(20)
 
 myTree.printInOrder(myTree.root)
 
