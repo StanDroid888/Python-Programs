@@ -210,7 +210,7 @@ class BinarySearchTree(object):
                     previousNode.left = currentNode.right
                     currentNode.right = None
             else:
-                currentNode.left = None
+                previousNode.left = None
                                 
         elif currentNode.left != None and currentNode.right == None:
             # Delete Node with Left child
