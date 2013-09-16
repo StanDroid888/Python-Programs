@@ -13,9 +13,10 @@ class BinarySearchTree(object):
         self.root = None
         self.count = 0
 
+
     # Inserts a Node on to the BST
     # Iterative version
-    def addNode(self, dataValue):
+    def addIteratively(self, dataValue):
         
         currentNode = self.root
         locationFound = False
@@ -52,26 +53,33 @@ class BinarySearchTree(object):
                         
     # Inserts a Node on to the BST
     # Recursive Version
-    def addRecusively(self, currentNode, dataValue):
+    def addRecursively(self, currentNode, dataValue):
         
         # Check to see if tree is Empty
         if currentNode == None:
             self.root = Node(dataValue)
             print "Added Root Node %s" % str(dataValue)
+            self.count += 1
         # Add a node onto the tree
         else:
             if dataValue > currentNode.data:
                 if currentNode.right == None:
                     currentNode.right = Node(dataValue)
                     print "Added Node %s" % str(dataValue)
+                    self.count += 1
                 else:
-                    self.add(currentNode.right, dataValue)
+                    self.addRecursively(currentNode.right, dataValue)
             elif dataValue < currentNode.data:
                 if currentNode.left == None:
                     currentNode.left = Node(dataValue)
                     print "Added Node %s" % str(dataValue)
+                    self.count += 1
                 else:
-                    self.add(currentNode.left, dataValue)
+                    self.addRecursively(currentNode.left, dataValue)
+                    
+    # Add wrapper
+    def add(self, dataValue):
+        self.addRecursively(self.root, dataValue)
                     
     # Output the tree IN order
     def printInOrder(self, currentNode):

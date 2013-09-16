@@ -8,23 +8,23 @@ from tree import BinarySearchTree
 
 myTree = BinarySearchTree()
 
-myTree.addNode(10)
-myTree.addNode(7)
-myTree.addNode(5)
-myTree.addNode(3)
-myTree.addNode(4)
-myTree.addNode(1)
-myTree.addNode(2)
-myTree.addNode(8)
-myTree.addNode(9)
+myTree.add(10)
+myTree.add(7)
+myTree.add(5)
+myTree.add(3)
+myTree.add(4)
+myTree.add(1)
+myTree.add(2)
+myTree.add(8)
+myTree.add(9)
  
-myTree.addNode(13)
-myTree.addNode(12)
-myTree.addNode(16)
-myTree.addNode(20)
-myTree.addNode(18)
-myTree.addNode(22)
-myTree.addNode(19)
+myTree.add(13)
+myTree.add(12)
+myTree.add(16)
+myTree.add(20)
+myTree.add(18)
+myTree.add(22)
+myTree.add(19)
  
  
 print "\nOriginal List"
@@ -43,6 +43,7 @@ myTree.deleteNode(7)
 myTree.deleteNode(20)
 myTree.deleteNode(10)
 
+print "\nTree after Deletions"
 myTree.printInOrder(myTree.root)
 print "\ncount: %d" % myTree.count
 
