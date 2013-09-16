@@ -22,10 +22,11 @@ myTree.add(13)
 myTree.add(12)
 myTree.add(16)
 myTree.add(20)
+
+myTree.add(12)
 myTree.add(18)
 myTree.add(22)
-myTree.add(19)
- 
+myTree.add(19) 
  
 print "\nOriginal List"
 

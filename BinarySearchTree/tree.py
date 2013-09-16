@@ -21,11 +21,6 @@ class BinarySearchTree(object):
         currentNode = self.root
         locationFound = False
         
-        # Check to see if Node is already on the Tree
-        if self.find(dataValue) == True:
-            print "CAN'T ADD DUPLICATE NODE ONTO TREE"
-            return
-        
         # Check to see if tree is Empty
         if currentNode == None:
             self.root = Node(dataValue)
@@ -79,6 +74,13 @@ class BinarySearchTree(object):
                     
     # Add wrapper
     def add(self, dataValue):
+        
+        # Check to see if Node is already on the Tree
+        if self.find(dataValue) == True:
+            print "CAN'T ADD DUPLICATE NODE ONTO TREE"
+            return
+               
+        # Call implemented add Node method
         self.addRecursively(self.root, dataValue)
                     
     # Output the tree IN order
